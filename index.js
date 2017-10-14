@@ -1,12 +1,15 @@
 'use strict'
+var paraquire = require('paraquire')(module)
+
 var Plumbing = require('./plumbing.js')
-var hasUnicode = require('has-unicode')
+var hasUnicode = paraquire('has-unicode', {builtin: ['os'], 'process.env': ['LC_ALL', 'LC_CTYPE', 'LANG']})
 var hasColor = require('./has-color.js')
-var onExit = require('signal-exit')
 var defaultThemes = require('./themes')
 var setInterval = require('./set-interval.js')
 var process = require('./process.js')
 var setImmediate = require('./set-immediate')
+
+var onExit = paraquire('signal-exit', {builtin: ['assert', 'events'], sandbox: {process: process}})
 
 module.exports = Gauge
 

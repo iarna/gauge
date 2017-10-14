@@ -1,7 +1,9 @@
 'use strict'
-var consoleControl = require('console-control-strings')
+var paraquire = require('paraquire')(module)
+
+var consoleControl = require('./console-control-strings-mock.js')
 var renderTemplate = require('./render-template.js')
-var validate = require('aproba')
+var validate = paraquire('aproba')
 
 var Plumbing = module.exports = function (theme, template, width) {
   if (!width) width = 80
